@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>하나생명 | 종합 라이프케어 상담</title>
+<meta name="description" content="건강·재무·가족·은퇴, 생애 전반의 고민을 상담해 드리는 하나생명 라이프케어">
+<style>
+:root{
+  --bg:#fbfaf8; --surface:#ffffff; --text:#3b3f4a; --muted:#7b8190;
+  --mint:#dff1ea; --mint-d:#6fb5a0; --peach:#fde6dc; --lav:#e8e3f5; --sky:#dcebf7;
+  --accent:#6fb5a0; --accent-d:#4f9a85; --line:#ebe8e3; --err:#d0605e;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h1,h2,h3{line-height:1.35;color:#2c303a}
+h2{font-size:1.7rem;text-align:center;margin-bottom:10px}
+.sub{text-align:center;color:var(--muted);margin-bottom:40px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;border-radius:999px;padding:12px 26px;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--accent-d)}
+.btn.sm{padding:8px 18px;font-size:.92rem}
+
+/* 내비게이션 */
+header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.15rem;color:#2c303a}
+.logo img{height:36px;width:auto}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{font-size:.95rem;color:var(--muted)}
+nav a:hover{color:var(--accent-d)}
+
+/* 이미지 자리(이미지 반영 전 임시) */
+.img-slot{border-radius:var(--radius);background:linear-gradient(135deg,var(--mint),var(--lav));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;overflow:hidden}
+.img-slot img{width:100%;height:100%;object-fit:cover}
+
+/* 히어로 */
+.hero{padding:64px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:2.3rem;margin-bottom:16px}
+.hero p{color:var(--muted);margin-bottom:28px}
+.hero .img-slot{aspect-ratio:3/2}
+
+/* 서비스 */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 22px}
+.card .img-slot{aspect-ratio:3/2;margin-bottom:14px}
+.card:nth-child(1) .img-slot{background:linear-gradient(135deg,var(--mint),var(--sky))}
+.card:nth-child(2) .img-slot{background:linear-gradient(135deg,var(--sky),var(--lav))}
+.card:nth-child(3) .img-slot{background:linear-gradient(135deg,var(--peach),var(--lav))}
+.card:nth-child(4) .img-slot{background:linear-gradient(135deg,var(--lav),var(--mint))}
+.card h3{font-size:1.1rem;margin-bottom:6px}
+.card p{font-size:.92rem;color:var(--muted)}
+
+/* 진행 방식 */
+.process{background:var(--mint)}
+.process-img{max-width:760px;margin:0 auto 24px;background:#faf7f0;border-radius:var(--radius);overflow:hidden}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--surface);border-radius:var(--radius);padding:28px 22px;text-align:center}
+.step .num{display:inline-flex;width:40px;height:40px;border-radius:50%;background:var(--peach);color:#b0694e;font-weight:700;align-items:center;justify-content:center;margin-bottom:12px}
+.step p{font-size:.92rem;color:var(--muted)}
+
+/* 후기 */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.review p{margin-bottom:14px}
+.review small{color:var(--muted)}
+.notice{text-align:center;color:var(--muted);font-size:.85rem;margin-top:20px}
+
+/* 폼 */
+.apply{background:var(--lav)}
+form{max-width:640px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:32px 28px}
+.field{margin-bottom:18px}
+label,.legend{display:block;font-weight:600;font-size:.93rem;margin-bottom:6px}
+input[type=text],input[type=tel],input[type=month],select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--text)}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--mint-d);border-color:var(--mint-d)}
+.radios{display:flex;gap:18px}
+.radios label,.consent label{font-weight:400;display:flex;align-items:center;gap:6px;margin:0}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--err)}
+.msg{color:var(--err);font-size:.83rem;margin-top:5px;display:none}
+.field.invalid .msg{display:block}
+.consent p.hint{font-size:.83rem;color:var(--muted);margin:4px 0 0 24px}
+form .btn{width:100%;margin-top:6px}
+#done{display:none;max-width:640px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:48px 28px;text-align:center}
+#done h3{font-size:1.4rem;margin-bottom:8px}
+#done p{color:var(--muted)}
+
+footer{padding:36px 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* 모바일 */
+@media (max-width:820px){
+  nav ul{display:none}
+  .hero .wrap{grid-template-columns:1fr}
+  .hero h1{font-size:1.8rem}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .steps,.reviews{grid-template-columns:1fr}
+  section{padding:52px 0}
+}
+@media (max-width:480px){
+  .cards{grid-template-columns:1fr}
+  form{padding:24px 18px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo" id="logo"><img src="images/logo.png" alt="하나생명 로고" width="114" height="36"></a>
+    <nav aria-label="주 메뉴">
+      <ul>
+        <li><a href="#services">서비스</a></li>
+        <li><a href="#process">진행 방식</a></li>
+        <li><a href="#reviews">후기</a></li>
+        <li><a href="#apply">상담 신청</a></li>
+      </ul>
+    </nav>
+    <a href="#apply" class="btn sm">상담 신청</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>삶의 모든 순간,<br>함께 고민해 드립니다</h1>
+        <p>건강 · 재무 · 가족 · 은퇴까지, 생애 전반의 고민을 한 곳에서 상담해 드리는 종합 라이프케어 서비스입니다.</p>
+        <a href="#apply" class="btn">상담 신청하기</a>
+      </div>
+      <div class="img-slot" data-slot="hero"><img src="images/hero.jpg" alt="밝은 거실에서 조부모, 부모, 아이가 소파에 모여 웃으며 이야기하는 가족" width="718" height="363"></div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>상담 분야</h2>
+      <p class="sub">생애 전반의 네 가지 영역을 함께 살펴봅니다</p>
+      <div class="cards">
+        <article class="card"><div class="img-slot" data-slot="service-health"><img src="images/service-health.jpg" alt="공원 산책로를 함께 걷는 중년 부부" width="718" height="363" loading="lazy"></div><h3>건강</h3><p>건강 관리와 의료 관련 고민을 상담합니다.</p></article>
+        <article class="card"><div class="img-slot" data-slot="service-finance"><img src="images/service-finance.jpg" alt="책상 위의 저금통, 새싹 화분, 계산기와 노트" width="718" height="362" loading="lazy"></div><h3>재무</h3><p>저축·지출·자산 관리에 대한 고민을 상담합니다.</p></article>
+        <article class="card"><div class="img-slot" data-slot="service-family"><img src="images/service-family.jpg" alt="꽃이 핀 공원을 함께 걷는 부모, 아이, 조부모" width="718" height="362" loading="lazy"></div><h3>가족</h3><p>가족의 생애 계획과 돌봄에 대한 고민을 상담합니다.</p></article>
+        <article class="card"><div class="img-slot" data-slot="service-retire"><img src="images/service-retire.jpg" alt="햇살 드는 발코니에서 차를 마시고 화분을 가꾸는 노년의 부부" width="960" height="720" loading="lazy"></div><h3>은퇴</h3><p>은퇴 이후의 생활과 준비에 대한 고민을 상담합니다.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="wrap">
+      <h2>진행 방식</h2>
+      <p class="sub">세 단계로 간단하게 진행됩니다</p>
+      <figure class="process-img"><img src="images/process.jpg" alt="신청서를 작성하고, 전문가를 만나고, 함께 상담하는 3단계 장면" width="1210" height="342" loading="lazy"></figure>
+      <div class="steps">
+        <div class="step"><span class="num">1</span><h3>신청</h3><p>아래 상담 신청 폼을 작성합니다.</p></div>
+        <div class="step"><span class="num">2</span><h3>전문가 배정</h3><p>신청 내용에 맞는 전문가가 배정됩니다.</p></div>
+        <div class="step"><span class="num">3</span><h3>맞춤 상담</h3><p>고객님 상황에 맞춘 상담을 진행합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <h2>이용 후기</h2>
+      <p class="sub">고객님들의 이야기</p>
+      <div class="reviews">
+        <div class="review"><p>“막연했던 고민을 차근차근 정리할 수 있었어요.”</p><small>예시 문구 · 30대 고객</small></div>
+        <div class="review"><p>“우리 가족 상황에 맞춰 이야기해 주셔서 편했습니다.”</p><small>예시 문구 · 40대 고객</small></div>
+        <div class="review"><p>“은퇴 이후를 구체적으로 그려볼 수 있었습니다.”</p><small>예시 문구 · 50대 고객</small></div>
+      </div>
+      <p class="notice">※ 위 후기는 화면 구성을 위한 예시 문구이며, 실제 후기로 교체될 예정입니다.</p>
+    </div>
+  </section>
+
+  <section id="apply" class="apply">
+    <div class="wrap">
+      <h2>상담 신청</h2>
+      <p class="sub">아래 내용을 남겨 주시면 전문가가 배정됩니다</p>
+
+      <form id="applyForm" novalidate>
+        <div class="field" data-f="name">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" autocomplete="name">
+          <p class="msg">이름을 입력해 주세요.</p>
+        </div>
+        <div class="field" data-f="phone">
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" autocomplete="tel">
+          <p class="msg">연락처를 올바른 형식으로 입력해 주세요. (예: 010-1234-5678)</p>
+        </div>
+        <div class="field" data-f="gender">
+          <span class="legend">성별</span>
+          <div class="radios">
+            <label><input type="radio" name="gender" value="여성"> 여성</label>
+            <label><input type="radio" name="gender" value="남성"> 남성</label>
+          </div>
+          <p class="msg">성별을 선택해 주세요.</p>
+        </div>
+        <div class="field" data-f="birth">
+          <label for="birth">출생년월</label>
+          <input type="month" id="birth" name="birth" min="1900-01">
+          <p class="msg">출생년월을 선택해 주세요.</p>
+        </div>
+        <div class="field" data-f="region">
+          <label for="region">거주지 (도 단위)</label>
+          <select id="region" name="region">
+            <option value="">선택해 주세요</option>
+            <option>서울특별시</option><option>부산광역시</option><option>대구광역시</option>
+            <option>인천광역시</option><option>광주광역시</option><option>대전광역시</option>
+            <option>울산광역시</option><option>세종특별자치시</option><option>경기도</option>
+            <option>강원특별자치도</option><option>충청북도</option><option>충청남도</option>
+            <option>전북특별자치도</option><option>전라남도</option><option>경상북도</option>
+            <option>경상남도</option><option>제주특별자치도</option>
+          </select>
+          <p class="msg">거주지를 선택해 주세요.</p>
+        </div>
+        <div class="field" data-f="category">
+          <label for="category">상담 분야</label>
+          <select id="category" name="category">
+            <option value="">선택해 주세요</option>
+            <option>건강</option><option>재무</option><option>가족</option><option>은퇴</option><option>기타</option>
+          </select>
+          <p class="msg">상담 분야를 선택해 주세요.</p>
+        </div>
+        <div class="field" data-f="inquiry">
+          <label for="inquiry">문의내용</label>
+          <textarea id="inquiry" name="inquiry"></textarea>
+          <p class="msg">문의내용을 입력해 주세요.</p>
+        </div>
+        <div class="field consent" data-f="consent">
+          <label><input type="checkbox" id="consent" name="consent"> 개인정보 수집·이용에 동의합니다. (필수)</label>
+          <p class="hint">상담 배정과 연락을 위해 입력하신 정보를 사용합니다.</p>
+          <p class="msg">개인정보 수집·이용에 동의해 주세요.</p>
+        </div>
+        <button type="submit" class="btn">상담 신청하기</button>
+      </form>
+
+      <div id="done" role="status" tabindex="-1">
+        <h3>신청이 접수되었습니다</h3>
+        <p>입력하신 내용을 확인한 뒤 전문가가 배정됩니다.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo"><img src="images/logo.png" alt="하나생명 로고" width="114" height="36"></a>
+    <span>실습용 가상 서비스입니다.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('applyForm');
+  var done = document.getElementById('done');
+  var phoneRe = /^01[016789]-?\d{3,4}-?\d{4}$/;
+
+  function setInvalid(key, bad){
+    var el = form.querySelector('[data-f="'+key+'"]');
+    el.classList.toggle('invalid', bad);
+    return bad;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = {
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      gender: form.querySelector('input[name="gender"]:checked'),
+      birth: form.birth.value,
+      region: form.region.value,
+      category: form.category.value,
+      inquiry: form.inquiry.value.trim(),
+      consent: form.consent.checked
+    };
+    var bad = [
+      setInvalid('name', !v.name),
+      setInvalid('phone', !phoneRe.test(v.phone)),
+      setInvalid('gender', !v.gender),
+      setInvalid('birth', !v.birth),
+      setInvalid('region', !v.region),
+      setInvalid('category', !v.category),
+      setInvalid('inquiry', !v.inquiry),
+      setInvalid('consent', !v.consent)
+    ];
+    var first = form.querySelector('.field.invalid');
+    if (bad.some(Boolean)) {
+      first.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    // STEP 2에서 이 지점에 저장(Airtable) 호출을 연결한다. 지금은 화면에서만 동작.
+    form.style.display = 'none';
+    done.style.display = 'block';
+    done.focus();
+  });
+
+  // 입력하면 해당 항목의 오류 표시를 해제
+  form.addEventListener('input', function(e){
+    var f = e.target.closest('.field');
+    if (f) f.classList.remove('invalid');
+  });
+  form.addEventListener('change', function(e){
+    var f = e.target.closest('.field');
+    if (f) f.classList.remove('invalid');
+  });
+})();
+</script>
+</body>
+</html>
